@@ -13,17 +13,33 @@ def my_round(number, ndigits):
 		if (ndigits > 0):
 			if (len(strAfterDot) != ndigits):
 				if (len(strAfterDot) > ndigits):
-					# Если номер ndigits элемента строки > 5,
+					## Если номер ndigits элемента строки > 5,
 					# то +1 предыдущему символу
 					# Иначе -1
-					afterLastNum = int(strAfterDot[ndigits])
-					strRoundNum = strAfterDot[:ndigits]
-					lastNum = int(strRoundNum[-1])
-					if (afterLastNum >= 5):
-						strRoundNum = strRoundNum[:-1] + str(lastNum+1)
+					## Если часть после запятой состоит из одних девяток
+					# К целой части +1
+					lastNum = int(strAfterDot[ndigits])
+					roundNum = strAfterDot[:ndigits]
+					
+					nineExcept = ""
+					nineExceptBool = False
+					
+					while (len(nineExcept) != len(roundNum)):
+						nineExcept += "9"
+					
+					roundNum = int(roundNum)
+					if (roundNum == int(nineExcept)):
+						roundNum = 0
+						nineExceptBool = True
 					else:
-						strRoundNum = strRoundNum[:-1] + str(lastNum-1)
-					return float(strNumber[:dotPos+1]+strRoundNum)
+						if (lastNum >= 5):
+							roundNum += 1
+						else:
+							roundNum -= 1
+					if (nineExceptBool):
+						return float(strNumber[:dotPos])+1
+					else:
+						return float(strNumber[:dotPos+1]+str(roundNum))
 				else:
 					### Дописать нулями
 					#while len(strAfterDot) != ndigits:
@@ -37,9 +53,9 @@ def my_round(number, ndigits):
 	else:
 		return number
 
-print(my_round(2.1234567, 0))
-#print(my_round(2.1999967, 5))
-#print(my_round(2.9999967, 5))
+print(my_round(2.1234567, 5))
+print(my_round(2.1999967, 5))
+print(my_round(2.9999967, 5))
 
 
 # Задание-2:
