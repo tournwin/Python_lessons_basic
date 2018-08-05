@@ -22,6 +22,30 @@ line = 'mtMmEZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxULaysmNO'\
        'XiUWgsKQrDOeZoNlZNRvHnLgCmysUeKnVJXPFIzvdDyleXylnKBfLCjLHntltignbQoiQ'\
        'zTYwZAiRwycdlHfyHNGmkNqSwXUrxGc'
 
+# 1 способ
+import re
+new_line = re.findall(r'[a-z]+', line)
+print('*** Задание 1.1')
+print('Результат: ', new_line)
+print('****************************')
+print()
+
+# 2 способ
+import string
+new_line = line
+alphabetUpper = set(string.ascii_uppercase)
+
+for x in alphabetUpper:
+       new_line = new_line.replace(x,' ')
+
+while '  ' in new_line:
+       new_line = new_line.replace('  ', ' ')
+
+new_line = new_line.split()
+print('*** Задание 1.2')
+print('Результат: ', new_line)
+print('****************************')
+print()
 
 
 # Задание-2:
@@ -47,6 +71,20 @@ line_2 = 'mtMmEZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxULaysm'\
        'uXBqHFjvihuNGEEFsfnMXTfptvIOlhKhyYwxLnqOsBdGvnuyEZIheApQGOXWeXoLWiDQN'\
        'JFaXiUWgsKQrDOeZoNlZNRvHnLgCmysUeKnVJXPFIzvdDyleXylnKBfLCjLHntltignbQ'\
        'oiQzTYwZAiRwycdlHfyHNGmkNqSwXUrxGC'
+
+# 1 способ
+new_line = [x[2:-2] for x in re.findall(r'[a-z]{2}[A-Z]+[A-Z]{2}', line_2)]
+print('*** Задание 2.1')
+print('Результат: ', new_line)
+print('****************************')
+print()
+
+#new_line2 = list(line_2)
+
+Скажите, пожалуйста, а можно будет в будущем задания переделать на другую оценку? 
+Когда будет возможностей больше
+Скажем, подтянуть старые задания 
+
 
 # Задание-3:
 # Напишите скрипт, заполняющий указанный файл (самостоятельно задайте имя файла)
