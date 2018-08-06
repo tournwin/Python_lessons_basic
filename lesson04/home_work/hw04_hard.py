@@ -13,8 +13,14 @@ matrix = [[1, 0, 8],
 #                  [8, 1, 2]]
 
 # Суть сложности hard: Решите задачу в одну строку
+
 r_matrix = list(map(list, zip(*matrix)))
-print(r_matrix)
+
+print('*** Задание 1')
+print('Начальная:\n', matrix)
+print('Транспонированная:\n', r_matrix)
+print('****************************')
+print()
 
 
 # Задание-2:
@@ -43,6 +49,23 @@ number = """
 05886116467109405077541002256983155200055935729725
 71636269561882670428252483600823257530420752963450"""
 
+import re
+
+number_list = re.findall(r'\d{5}', number)
+max_num = 0
+max_ind = 0
+for n in number_list:
+	num = 1
+	for digit in n:
+		num *= int(digit)
+	if num > max_num:
+		max_num = num
+		max_ind = number.find(n)
+
+print('*** Задание 2')
+print('Наибольшее произведение: ', max_num)
+print('Индекс: ', max_ind)
+
 
 # Задание-3 (Ферзи):
 # Известно, что на доске 8×8 можно расставить 8 ферзей так, чтобы они не били
@@ -51,3 +74,22 @@ number = """
 # Программа получает на вход восемь пар чисел,
 # каждое число от 1 до 8 — координаты 8 ферзей.
 # Если ферзи не бьют друг друга, выведите слово NO, иначе выведите YES.
+
+import random
+
+coordinates = []
+for _ in range(8):
+	coordinates.append([random.randint(1,8), random.randint(1,8)])
+
+print('*** Задание 3')
+#test = 1
+for n, coord in enumerate(coordinates):
+	for i, incoord in enumerate(coordinates):
+		if (coord == incoord) & (n!=i):
+			print('YES')
+			#print('YES', test)
+			#print(coord, incoord)		 
+		else:
+			print('NO')
+		#	print('NO', test)
+		#test += 1

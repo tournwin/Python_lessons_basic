@@ -73,17 +73,14 @@ line_2 = 'mtMmEZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxULaysm'\
        'oiQzTYwZAiRwycdlHfyHNGmkNqSwXUrxGC'
 
 # 1 способ
-new_line = [x[2:-2] for x in re.findall(r'[a-z]{2}[A-Z]+[A-Z]{2}', line_2)]
+#new_line = [x[2:-2] for x in re.findall(r'[a-z]{2}[A-Z]+[A-Z]{2}', line_2)]
+new_line = re.findall(r'[a-z]{2}([A-Z]+)[A-Z]{2}', line_2)
 print('*** Задание 2.1')
 print('Результат: ', new_line)
 print('****************************')
 print()
 
 #new_line2 = list(line_2)
-
-Скажите, пожалуйста, а можно будет в будущем задания переделать на другую оценку? 
-Когда будет возможностей больше
-Скажем, подтянуть старые задания 
 
 
 # Задание-3:
@@ -92,3 +89,21 @@ print()
 # 2500-значное произвольное число.
 # Найдите и выведите самую длинную последовательность одинаковых цифр
 # в вышезаполненном файле.
+
+import random
+
+line = [str(random.randint(0, 9)) for _ in range(2500)]
+new_line = ''.join(line)
+
+f = open('2500digits.txt', 'w')
+f.write(new_line)
+f.close()
+
+f = open('2500digits.txt', 'r')
+new_line = f.read()
+f.close()
+
+digit_list = re.findall(r'0+|1+|2+|3+|4+|5+|6+|7+|8+|9+', new_line)
+
+print('*** Задание 3')
+print('Самое длинное число:', max(digit_list, key=len))
